@@ -15,8 +15,31 @@
 	<context:component-scan base-package="total.controller"/>
 	<context:component-scan base-package="total.service"/>
 	
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="uploadTempDir" value="/temp" />
+	</bean>
+	<!-- mybatis setting -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"/>
 		<property name="suffix" value=".jsp"/>
+	</bean>
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.10.73:1521:xe" />
+		<property name="username" value="hyungjun" />
+		<property name="password" value="oracle" />
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="factory">
+		<property name="dataSource" ref="ds" />
+		<property name="mapperLocations">
+			<list>
+				<value>/WEB-INF/mapper/*-mapper.xml</value>				
+			</list>
+		</property>
+	</bean>
+	<bean id="sqlTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="factory" />
 	</bean>
 </beans>
