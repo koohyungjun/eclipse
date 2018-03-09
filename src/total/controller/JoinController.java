@@ -39,7 +39,7 @@ public class JoinController {
 			}
 			throw new Exception();
 		}catch(Exception e) {
-			model.addAttribute("err", "ê³„ì •ìƒì„±ì—ì„œ ë¬¸ì œê°€ ìˆì—ˆìŠµë‹ˆë‹¤.");
+			model.addAttribute("err", "°èÁ¤»ı¼º¿¡¼­ ¹®Á¦°¡ ÀÖ¾ú½À´Ï´Ù.");
 			return "join";
 		}
 	}
