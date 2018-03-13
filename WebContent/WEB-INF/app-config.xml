@@ -4,7 +4,9 @@
 	xmlns:aop="http://www.springframework.org/schema/aop"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xmlns:context="http://www.springframework.org/schema/context"
-	xsi:schemaLocation="http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
+	xmlns:websocket="http://www.springframework.org/schema/websocket"
+	xsi:schemaLocation="http://www.springframework.org/schema/websocket http://www.springframework.org/schema/websocket/spring-websocket-4.3.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.3.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
@@ -15,8 +17,53 @@
 	<context:component-scan base-package="total.controller"/>
 	<context:component-scan base-package="total.service"/>
 	
+	<!-- WebSocket Handle config setting -->
+	<websocket:handlers>
+		<websocket:mapping handler="wsController" path="handle"/>
+	</websocket:handlers>
+	
+	
+	<!-- view resolver serring -->
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="uploadTempDir" value="/temp" />
+	</bean>
+	<!-- mybatis setting -->
 	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="/WEB-INF/view/"/>
 		<property name="suffix" value=".jsp"/>
 	</bean>
+	<bean id="ds"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url" value="jdbc:oracle:thin:@192.168.10.73:1521:xe" />
+		<property name="username" value="hyungjun" />
+		<property name="password" value="oracle" />
+	</bean>
+	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="factory">
+		<property name="dataSource" ref="ds" />
+		<property name="mapperLocations">
+			<list>
+				<value>/WEB-INF/mapper/*-mapper.xml</value>				
+			</list>
+		</property>
+	</bean>
+	<bean id="sqlTemplate" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg name="sqlSessionFactory" ref="factory" />
+	</bean>
+	
+	<!-- mail sender setting -->
+	<bean class="org.springframework.mail.javamail.JavaMailSenderImpl" id="mailSender">
+		<property name="host" value="smtp.gmail.com"/>
+		<property name="username" value="hyungjuntest@gmail.com"/>
+		<property name="password" value="kjh6283123"/>
+		<property name="port" value="587"/>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
 </beans>

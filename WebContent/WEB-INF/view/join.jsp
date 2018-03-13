@@ -5,49 +5,62 @@
 <head>
 <title>Spring - managed by GIT</title>
 </head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 a {
 	text-decoration: none;
 }
+
 input {
-	padding: 3px; width: 300px;
+	padding: 3px;
+	width: 100%;
 }
 </style>
 <body>
-	<div align="center">
+	<div align="center" class="container">
 		<div style="width: 980px;">
-			<div>
+			<div class="jumbotron">
 				<h1>Spring Project</h1>
 				<small>- ${ment } -</small>
 			</div>
 			<hr />
 			<div align="right" style="padding-right: 20px;">
-				<a href="/login"><span>Sign in</span></a> <span>or</span> <span
-					style="font-weight: bold">Sign up</span>
+				<a href="/login"><span>Sign in</span></a> <span>or</span> 
+				<a href="/join"><span>Sign up</span></a>
 			</div>
 			<hr />
 			<div style="font-size: 17pt; margin-top: 50px;">
-				Create your personal account<br /> <span style="font-size: 11pt;">회원가입시 모든 요소는
-					필수기입 항목입니다.</span>
+				Create your personal account<br /> <span style="font-size: 11pt;">회원가입시
+					모든 요소는 필수기입 항목입니다.</span>
 			</div>
 			<div>
-				<form action="/join"
-					method="post" style="width: 330px; text-align: left;"
-					autocomplete="off">
-					<div style="margin-top: 20px;">
+				<c:if test="${!empty err }">
+					<p style="color:red">${err }</p>
+				</c:if>
+				<form action="/join" method="post"
+					style="width: 330px; text-align: left; line-height: 34px;" autocomplete="off">
+					<p>
 						<b>ID(*)</b> <small id="checkrst"></small><br /> <input
-							type="text" name="id" id="id" pattern="[a-zA-Z]+">
-					</div>
-					<div style="margin-top: 20px;">
-						<b>PASS(*)</b><br /> <input type="password" name="pass">
-					</div>
-					<div style="margin-top: 20px;">
-						<b>EMAIL(*)</b><br /> <input type="email" name="email">
-					</div>
-					<div style="margin-top: 20px;">
-						<button id="sbt" type="submit" style="width: 100%; height: 30px;"
-							>가 입 신 청</button>
-					</div>
+							type="text" name="id" id="id" pattern="[a-zA-Z]+" value="${param.id }">
+					</p>
+					<p>
+						<b>EMAIL(*)</b><br /> <input type="email" name="email"  value="${param.email }">
+					</p>
+					<p>
+						<b>PASS(*)</b><br /> <input type="password" name="password">
+					</p>
+					<p>
+						<button id="sbt" type="submit" style="width: 100%; height: 30px;">가
+							입 신 청</button>
+					</p>
 				</form>
 			</div>
 		</div>
