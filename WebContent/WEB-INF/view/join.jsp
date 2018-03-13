@@ -5,6 +5,15 @@
 <head>
 <title>Spring - managed by GIT</title>
 </head>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<!-- jQuery library -->
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<!-- Latest compiled JavaScript -->
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 <style>
 a {
 	text-decoration: none;
@@ -16,9 +25,9 @@ input {
 }
 </style>
 <body>
-	<div align="center">
+	<div align="center" class="container">
 		<div style="width: 980px;">
-			<div>
+			<div class="jumbotron">
 				<h1>Spring Project</h1>
 				<small>- ${ment } -</small>
 			</div>
