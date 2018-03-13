@@ -17,11 +17,18 @@
 	<context:component-scan base-package="total.controller"/>
 	<context:component-scan base-package="total.service"/>
 	
-	<!-- WebSocket Handle config setting -->
+	<!-- websocket setting -->
 	<websocket:handlers>
-		<websocket:mapping handler="wsController" path="handle"/>
+		<websocket:mapping handler="alertController" path="/alert"/>
+		<websocket:handshake-interceptors>
+			<bean class="org.springframework.web.socket.server.support.HttpSessionHandshakeInterceptor"/>
+		</websocket:handshake-interceptors>
 	</websocket:handlers>
 	
+	<!-- WebSocket Handle config setting -->
+	<websocket:handlers>
+		<websocket:mapping handler="wsController" path="/handle"/>
+	</websocket:handlers>	
 	
 	<!-- view resolver serring -->
 	<bean id="multipartResolver"

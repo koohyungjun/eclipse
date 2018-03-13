@@ -28,14 +28,22 @@
 		<hr />
 		<div>
 			<div class="alert alert-info">
-				<b>현재접속자수:<span id="cnt"></span></b> / <strong>서버알림</strong><span
+				<b>현재접속자수 : </b><span id="cnt"></span>
+				<br/>
+				<strong>서버알림 : </strong><span
 					id="info">-</span>
 			</div>
 		</div>
 	</div>
-	
+
 	<!-- ${pageContext.request.serverName } -->
 	<script>
+		var ws = new WebSocket("ws://${pageContext.request.serverName}/alert");
+		ws.onmessage = function(rst) {
+			console.log(rst);
+			var obj = JSON.parse(rst);
+		}
+
 		var ws = new WebSocket("ws://${pageContext.request.serverName}/handle");
 		// 연결이 됬을때. 
 		ws.onopen = function() {
@@ -53,6 +61,7 @@
 		ws.onclose = function() {
 			window.alert("연결이 해제되었습니다.");
 		}
+		
 	</script>
 </body>
 </html>

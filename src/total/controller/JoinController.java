@@ -35,6 +35,8 @@ public class JoinController {
 			boolean rst= joinService.addNewOne(param);
 			if(rst) {
 				session.setAttribute("logon", param.get("id"));
+				String sid = session.getId();
+				System.out.println(sid);
 				return "redirect:/";
 			}
 			throw new Exception();
