@@ -15,5 +15,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="getByIdmailAndPassword" resultType="hashmap">
 		select * from member where (id=#{idmail} or email=#{idmail}) and password=#{password}
 	</select>
+	
 </mapper>
 

@@ -22,6 +22,5 @@ public class JoinService {
 	public boolean existEmailCheck(String email) {
 		return template.selectOne("member.getByEmail", email)!=null;
 	}
-	
-	
+
 }

@@ -34,7 +34,7 @@
 		<hr />
 	</div>
 	<div>
-		<div class="alert alert-info">
+		<div align="center" class="alert alert-info">
 			<b>현재접속자수 : </b><span id="cnt"></span> <br /> <strong>서버알림
 				: </strong><span id="info">-</span>
 		</div>

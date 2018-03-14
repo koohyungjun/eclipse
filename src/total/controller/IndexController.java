@@ -13,7 +13,7 @@ public class IndexController {
 	GreetService greetService;
 	
 	@RequestMapping({"/index","/"})
-	public String indexHandle(Model model ) {
+	public String indexHandle(Model model) {
 		model.addAttribute("ment", greetService.make());
 		return "index";
 	}
