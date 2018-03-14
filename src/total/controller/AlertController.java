@@ -29,9 +29,9 @@ public class AlertController extends TextWebSocketHandler {
 		 * HttpSession 을 접근해서 얻어와야 함.. 그냥은 안되고.. HttpSessionHandshakeInterceptor 를
 		 * 설정해두면, Spring이 이 메서드를 호출할때, 이 클라이언트가 사용중인 HttpSession의 setAttribute 되어 있는 값들을
 		 * WebSocketSession에서 뽑아다 쓸수 있게 넣어줌. 그러면서 추가로. "HTTP.SESSION.ID" 라는 키로 사용중인
-		 * session id도 넣어주고.
+		 * 그러면서 추가로. "HTTP.SESSION.ID" 라는 키로 사용중인 session id도 넣어주고.
 		 */
-
+		
 		System.out.println("AlertController.connectionEstablished");
 		Map<String, Object> map = session.getAttributes();
 		System.out.println(map);

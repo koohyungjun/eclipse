@@ -20,19 +20,23 @@
 			<h1>Spring Project</h1>
 			<small>- ${ment } -</small>
 		</div>
+		<div class="alert alert-warning alert-dismissible" id="warn"
+			style="display: none">
+			<a href="javascript:location.reload();" class="close"
+				data-dismiss="alert" aria-label="close">&times;</a> <strong>경고!</strong>
+			다른 윈도우 혹은 탭에서 상태가 변경되었습니다.
+		</div>
 		<hr />
 		<div align="right" style="padding-right: 20px;">
 			<a href="/login"><span>Sign in</span></a> <span>or</span> <a
 				href="/join"><span>Sign up</span></a>
 		</div>
 		<hr />
-		<div>
-			<div class="alert alert-info">
-				<b>현재접속자수 : </b><span id="cnt"></span>
-				<br/>
-				<strong>서버알림 : </strong><span
-					id="info">-</span>
-			</div>
+	</div>
+	<div>
+		<div class="alert alert-info">
+			<b>현재접속자수 : </b><span id="cnt"></span> <br /> <strong>서버알림
+				: </strong><span id="info">-</span>
 		</div>
 	</div>
 
@@ -41,7 +45,8 @@
 		var ws = new WebSocket("ws://${pageContext.request.serverName}/alert");
 		ws.onmessage = function(rst) {
 			console.log(rst);
-			var obj = JSON.parse(rst);
+			$("#warn").show();
+			// var obj = JSON.parse(rst);
 		}
 
 		var ws = new WebSocket("ws://${pageContext.request.serverName}/handle");
@@ -61,7 +66,6 @@
 		ws.onclose = function() {
 			window.alert("연결이 해제되었습니다.");
 		}
-		
 	</script>
 </body>
 </html>
